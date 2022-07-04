@@ -122,3 +122,13 @@ history = model.fit_generator(
     epochs=50,
     verbose=1
 )
+#Дообучение модели
+model.compile(loss='categorical_crossentropy', optimizer=Adam(lr=0.00004), metrics=['accuracy'])
+history = model.fit_generator(
+    train_generator,
+    steps_per_epoch = train_generator.samples // batch_size,
+    validation_data = validation_generator,
+    validation_steps = validation_generator.samples // batch_size,
+    epochs=50,
+    verbose=1
+)
